@@ -99,4 +99,4 @@ class MySqlConnection(DbConnection):
             self.connection.start_transaction(isolation_level='REPEATABLE READ')
 
     def cursor(self, name=None, withhold=False):
-        return LoggingCursor(self.connection.cursor())
+        return LoggingCursor(self.connection.cursor(buffered=True))
