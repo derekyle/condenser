@@ -35,7 +35,7 @@ def copy_rows(source, destination, query, destination_table):
                 break
 
             template = ','.join(['%s']*len(rows[0]))
-            destination_cursor = destination.cursor()
+            destination_cursor = destination.cursor(buffered=True)
             insert_query = 'INSERT INTO {} VALUES ({})'.format(fully_qualified_table(destination_table), template)
             destination_cursor.executemany(insert_query, rows)
 
